@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <vector>
 #include "PoinstSet/pointsset.h"
+#include "QtWidgets/qgraphicsscene.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -33,5 +34,6 @@ private:
     int selectedSet = 0;
     void updateDistanceComponent();
     void updateAngleComponent();
+    void updateGraphicsComponent();
 };
 #endif // MAINWINDOW_H

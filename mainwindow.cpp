@@ -60,10 +60,30 @@ void MainWindow::updateAngleComponent() {
     this->ui->sortedByAngle->setText(content);
 }
 
+void MainWindow::updateGraphicsComponent() {
+    this->ui->graphicsView->setBackgroundBrush(QBrush(Qt::white));
+    QGraphicsScene *scene = new QGraphicsScene;
+    scene->setSceneRect(0, 0, this->ui->graphicsView->width() - 10, this->ui->graphicsView->height() - 10);
+    int scale = this->ui->graphicsView->width() / 40;
+    int offsetX = this->ui->graphicsView->width() / 2;
+    int offsetY = this->ui->graphicsView->height() / 2;
+    scene->addLine(0, offsetY, this->ui->graphicsView->width(), offsetY, QPen());
+    scene->addLine(offsetX, 0, offsetX, this->ui->graphicsView->height(), QPen());
+    PointsListItem *item = this->getCurrentSet()->getList()->getFirst();
+    while (item != NULL) {
+        scene->addEllipse((item->X * scale) + offsetX - 3, ((-item->Y * scale) + offsetY) - 3, 6, 6, QPen(), QBrush(Qt::red));
+        item = item->next;
+    }
+    this->ui->graphicsView->setScene(scene);
+}
+
 void MainWindow::update() {
     this->updateDistanceComponent();
     this->updateAngleComponent();
+    this->updateGraphicsComponent();
 }
+
+
 
 void MainWindow::addPointClicked()
 {

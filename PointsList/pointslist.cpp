@@ -105,7 +105,7 @@ float PointsList::angleFromOX(const PointsListItem item) {
     if (item.Y == 0) {
         return 0;
     }
-    return atan(abs(item.Y) / abs(item.X)) * (180/M_PI);
+   return atan((float)(abs(item.Y)) / (float)(abs(item.X))) * (180/M_PI);
 }
 
 void PointsList::sortByAngle() {
